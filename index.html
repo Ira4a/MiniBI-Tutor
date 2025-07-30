@@ -23,22 +23,17 @@
     <option value="line">Line</option>
     <option value="pie">Pie</option>
   </select>
-  <button onclick="generateChart()">Generate Chart</button>
+  <button id="generateBtn">Generate Chart</button>
 
-  <div>
-    <canvas id="chartCanvas"></canvas>
-  </div>
-
+  <canvas id="chartCanvas"></canvas>
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <!-- PapaParse -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 
-  <!-- JS -->
   <script>
+    let parsedData = [];
     let chart;
 
     document.getElementById('csvFile').addEventListener('change', function(e) {
@@ -48,20 +43,27 @@
           header: true,
           dynamicTyping: true,
           complete: function(results) {
-            window.parsedData = results.data;
-            alert("CSV загружен. Выберите тип графика и нажмите 'Generate Chart'");
+            parsedData = results.data.filter(row => Object.values(row).some(v => v !== null && v !== ''));
+            alert("CSV загружен: " + parsedData.length + " строк.");
           }
         });
       }
     });
 
-    function generateChart() {
-      const data = window.parsedData;
-      if (!data || data.length === 0) return;
+    document.getElementById('generateBtn').addEventListener('click', function() {
+      if (!parsedData || parsedData.length === 0) {
+        alert("Сначала загрузите CSV-файл!");
+        return;
+      }
 
-      const keys = Object.keys(data[0]);
-      const labels = data.map(row => row[keys[0]]);
-      const values = data.map(row => row[keys[1]]);
+      const keys = Object.keys(parsedData[0]);
+      if (keys.length < 2) {
+        alert("CSV должен содержать минимум 2 колонки");
+        return;
+      }
+
+      const labels = parsedData.map(row => row[keys[0]]);
+      const values = parsedData.map(row => row[keys[1]]);
 
       const ctx = document.getElementById('chartCanvas').getContext('2d');
       if (chart) chart.destroy();
@@ -75,19 +77,17 @@
           datasets: [{
             label: `${keys[1]} by ${keys[0]}`,
             data: values,
-            backgroundColor: 'rgba(75, 192, 192, 0.5)'
+            backgroundColor: 'rgba(54, 162, 235, 0.5)'
           }]
         },
         options: {
           responsive: true,
           plugins: {
-            legend: {
-              display: true
-            }
+            legend: { display: true }
           }
         }
       });
-    }
+    });
   </script>
 </body>
 </html>
