@@ -13,7 +13,7 @@ Mini Power BI Tutor helps users learn data visualization and business intelligen
 
     - Simple visualizations to understand core BI principles
 
-Features
+<h2>Features</h2>
 
     - User-friendly interface inspired by Power BI
 
@@ -23,7 +23,7 @@ Features
 
     - Lightweight and accessible without installation
 
-Technologies Used
+<h2>Technologies Used</h2>
 
     - HTML, CSS, JavaScript for frontend
 
@@ -31,9 +31,9 @@ Technologies Used
 
     - Node.js backend (planned/future feature)
 
-  Installation
+<h2>Installation</h2>
   
     - Open index.html in your browser to start using the tutor.
 
-//For future backend integration, installation instructions will be updated.
+//For future backend integration, installation instructions will be updated.//
 
