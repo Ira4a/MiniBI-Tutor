@@ -1,4 +1,4 @@
-# MiniBI-Tutor
+# Mini Power BI Tutor
 
 An educational web platform designed to teach Power BI fundamentals through interactive tasks and a simplified Power BI-like experience directly in the browser.
 Overview
@@ -34,6 +34,7 @@ Mini Power BI Tutor helps users learn data visualization and business intelligen
 <h2>Installation</h2>
   
     - Open index.html in your browser to start using the tutor.
+    - Access your live site at https://ira4a.github.io/MiniBI-Tutor/
 
-//For future backend integration, installation instructions will be updated.//
+//For future backend integration, installation instructions will be updated//
 
