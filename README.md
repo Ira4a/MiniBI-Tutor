@@ -1,9 +1,6 @@
 # Mini Power BI Tutor
 
-An educational web platform designed to teach Power BI fundamentals through interactive tasks and a simplified Power BI-like experience directly in the browser.
-Overview
-
-Mini Power BI Tutor helps users learn data visualization and business intelligence concepts in a hands-on way. The platform features:
+A web-based educational tool to learn Power BI basics through simple visualizations directly in the browser. The platform features:
 
     - Interactive Power BI-style reports and dashboards
 
