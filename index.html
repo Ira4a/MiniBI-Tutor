@@ -1,43 +1,39 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>BI Tutor — Учись визуализировать</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini BI Tutor</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Mini BI Tutor — Учись визуализировать данные</h1>
+  <div class="container">
+    <h1>Mini BI Tutor — Учись визуализировать данные</h1>
 
-  <section id="instructions">
-    <p><strong>Шаг 1:</strong> Загрузите CSV-файл.</p>
-    <p><strong>Шаг 2:</strong> Выберите оси (X и Y) и тип диаграммы.</p>
-    <p><strong>Шаг 3:</strong> Нажмите "Построить график".</p>
-  </section>
+    <div class="controls">
+      <input type="file" id="csvFile" accept=".csv" />
+      <label for="xColumn">X:</label>
+      <select id="xColumn"></select>
 
-  <div id="controls">
-    <input type="file" id="csvFile" accept=".csv">
-    <br>
-    <label>X: <select id="xColumn"></select></label>
-    <label>Y: <select id="yColumn"></select></label>
-    <label>Тип диаграммы:
+      <label for="yColumn">Y:</label>
+      <select id="yColumn"></select>
+
+      <label for="chartType">Тип диаграммы:</label>
       <select id="chartType">
         <option value="bar">Столбчатая</option>
         <option value="line">Линейная</option>
         <option value="pie">Круговая</option>
+        <option value="doughnut">Кольцевая</option>
+        <option value="radar">Радар</option>
       </select>
-    </label>
-    <button id="generateBtn">Построить график</button>
-    <button id="saveBtn">Сохранить как PNG</button>
-  </div>
 
-  <div id="task">
-    <h3>🎯 Задание: Построй диаграмму по колонкам "Месяц" и "Продажи"</h3>
-    <p>Тип: столбчатая</p>
-    <p id="taskStatus">Ожидает выполнения...</p>
-  </div>
+      <button id="generateBtn">Построить график</button>
+      <button id="saveBtn">Сохранить как PNG</button>
+    </div>
 
-  <div id="dataPreview"></div>
-  <canvas id="chartCanvas" width="600" height="400"></canvas>
+    <div id="dataPreview"></div>
+    <canvas id="chartCanvas"></canvas>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
