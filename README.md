@@ -36,4 +36,5 @@ Mini Power BI Tutor helps users learn data visualization and business intelligen
     - Open index.html in your browser to start using the tutor.
     - For future backend integration, installation instructions will be updated
     
-<p>Alternatively, you can host the project directly on GitHub Pages for easy online access:</p><a href="https://ira4a.github.io/MiniBI-Tutor">GitHub Page</a>
+<p>Alternatively, you can host the project directly on GitHub Pages for easy online access:</p>
+<a href="https://ira4a.github.io/MiniBI-Tutor">GitHub Page</a>
