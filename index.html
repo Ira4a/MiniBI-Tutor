@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Power BI Tutor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    canvas {
+      max-width: 800px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mini Power BI Tutor</h1>
+
+  <input type="file" id="csvFile" accept=".csv" />
+  <select id="chartType">
+    <option value="bar">Bar</option>
+    <option value="line">Line</option>
+    <option value="pie">Pie</option>
+  </select>
+  <button onclick="generateChart()">Generate Chart</button>
+
+  <div>
+    <canvas id="chartCanvas"></canvas>
+  </div>
+
+  <!-- Chart.js -->
+  <script>
+    /*! Chart.js v4.4.0 */
+    // ВСТАВЬ сюда минимальную версию Chart.js (или подключи CDN)
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- PapaParse -->
+  <script>
+    /*! PapaParse v5.3.2 */
+    // ВСТАВЬ сюда минимальную версию PapaParse (или подключи CDN)
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+
+  <!-- JS -->
+  <script>
+    let chart;
+
+    document.getElementById('csvFile').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        Papa.parse(file, {
+          header: true,
+          dynamicTyping: true,
+          complete: function(results) {
+            window.parsedData = results.data;
+            alert("CSV загружен. Выберите тип графика и нажмите 'Generate Chart'");
+          }
+        });
+      }
+    });
+
+    function generateChart() {
+      const data = window.parsedData;
+      if (!data || data.length === 0) return;
+
+      const keys = Object.keys(data[0]);
+      const labels = data.map(row => row[keys[0]]);
+      const values = data.map(row => row[keys[1]]);
+
+      const ctx = document.getElementById('chartCanvas').getContext('2d');
+      if (chart) chart.destroy();
+
+      const chartType = document.getElementById('chartType').value;
+
+      chart = new Chart(ctx, {
+        type: chartType,
+        data: {
+          labels: labels,
+          datasets: [{
+            label: `${keys[1]} by ${keys[0]}`,
+            data: values,
+            backgroundColor: 'rgba(75, 192, 192, 0.5)'
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
